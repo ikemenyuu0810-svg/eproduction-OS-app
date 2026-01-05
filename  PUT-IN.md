@@ -1,63 +1,35 @@
 # 使用言語
 ・Type Script
-・Java Script (" Node.js ")
-・React
+・Java Script (" Next.js ")
 
-# フレームワーク・ライブラリ
-# frontend 関連
-・Ract
- url: https://reactjs.org/
-・Next.js
- url: https://nextjs.org/
-・TypeScript
- url: https://www.typescriptlang.org/
+# 概要
+リキッドグラスを追加したUIライブラリを用いて、モダンで洗練されたデスクトップアプリケーションを構築しました。リアルタイム通信や効率的な状態管理を実現し、ユーザー体験を向上させています。
 
- #　管理
-・Redux Toolkit
- url: https://redux-toolkit.js.org/
+フロントエンド
+# 実行環境 Next.js
+# 言語 Type Script
+# UI React
+# スタイリング Tailwind CSS
+# IU補助 Chakra UI
+# アニメーション Framer Motion
+# 状態管理 React Toolkit
+# API管理 React Query
+# リアルタイム Socket.io Client
 
- #　スタイリング(IU)
-・Tailwind CSS
- url: https://tailwindcss.com/
-・Chakra UI
- url: https://chakra-ui.com/
+バックエンド
+# 実行環境 Node.js
+# 言語 Type Script
+# API Express
+# リアルタイム Socket.io Server
+#　データ保存　SQLite
+#　設計 レイヤード / Clean Architecture
 
-# backend 関連
-・Node.js
- url: https://nodejs.org/
-・Express
- url: https://expressjs.com/
-
- # API
- ・React Query
-  url: https://react-query.tanstack.com/
-
-#　テスト、品質
-・Jest
- url: https://jestjs.io/ja/
-・React Testing Library
- url: https://testing-library.com/docs/react-testing-library/intro/
- ・Testing Library
-  url: https://testing-library.com/
-・ESLint
- url: https://eslint.org/
-・Prettier
- url: https://prettier.io/
-
-----------------------------------------------------------------
-
- # +a リアルタイム通信
-・Socket.IO
- url: https://socket.io/
-
- # +a 開発環境
-・webpack
- url: https://webpack.js.org/
- ・Babel
-  url: https://babeljs.io/
-  ・Vite
-   url: https://vitejs.dev/
-
- # +a IU
-・Framer Motion
- url: https://www.framer.com/motion/
+デスクトップ化
+# 実行環境 Electron
+# ロカール保存 SQLite
+テスト
+# 単体テスト Jest
+# UIテスト React Testing Library
+# 静的解析 ESLint
+# 整形 Prettier
+# 肩チェック Type Script

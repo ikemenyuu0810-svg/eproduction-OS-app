@@ -1,70 +1,131 @@
 project-root/
-│
-├── backend/                        # Javaバックエンド全体
-│   ├── src/main/java/app/           # Javaコードのルートパッケージ
-│   │   ├── domain/                  # ビジネスルール・エンティティ
+├── backend/
+│   ├── src/
+│   │   ├── domain/
 │   │   │   └── user/
-│   │   │       ├── User.java        # ユーザー情報のモデル
-│   │   │       ├── UserId.java      # ユーザーIDを型安全に管理
-│   │   │       ├── UserService.java # ドメインサービス（ロジック）
-│   │   │       └── UserRepository.java # DBアクセスのインターフェース
+│   │   │       ├── User.ts
+│   │   │       │  # ユーザー情報のデータモデル
+│   │   │       │  # 名前・メールなどの属性を定義
+│   │   │       │  # 追加：新しい属性はここに追加
+│   │   │       ├── UserId.ts
+│   │   │       │  # ユーザーの固有ID型
+│   │   │       │  # UUIDや連番など、ID生成ルールをまとめる
+│   │   │       ├── UserService.ts
+│   │   │       │  # ユーザー関連のビジネスロジック
+│   │   │       │  # ドメインルール（名前の重複禁止など）を実装
+│   │   │       └── UserRepository.ts
+│   │   │          # DB操作の抽象インターフェース
+│   │   │          # 保存・取得・削除メソッドを定義
+│   │   │          # 実際のDB実装はadapter_dbで行う
 │   │   │
-│   │   ├── application/             # ユースケース層（ビジネスフロー）
+│   │   ├── application/
 │   │   │   └── user/
-│   │   │       ├── CreateUserUseCase.java
-│   │   │       ├── GetUserUseCase.java
-│   │   │       └── DeleteUserUseCase.java
+│   │   │       ├── CreateUserUseCase.ts
+│   │   │       │  # ユーザー作成の処理手順をまとめる
+│   │   │       │  # Controllerから呼ばれ、UserServiceとRepositoryを利用
+│   │   │       ├── GetUserUseCase.ts
+│   │   │       │  # ユーザー取得処理
+│   │   │       └── DeleteUserUseCase.ts
+│   │   │          # ユーザー削除処理
 │   │   │
-│   │   ├── adapter_api/             # API/UIとの接続
+│   │   ├── adapter_api/
 │   │   │   └── user/
-│   │   │       ├── UserController.java  # REST APIコントローラー
-│   │   │       ├── UserRequest.java     # APIリクエスト用DTO
-│   │   │       └── UserResponse.java    # APIレスポンス用DTO
+│   │   │       ├── UserController.ts
+│   │   │       │  # HTTPリクエストを受ける入口
+│   │   │       │  # UseCaseを呼び出して結果を返す
+│   │   │       ├── UserRequest.ts
+│   │   │       │  # APIの入力型（Request DTO）
+│   │   │       │  # 型チェックやバリデーションに利用
+│   │   │       └── UserResponse.ts
+│   │   │          # APIの出力型（Response DTO）
+│   │   │          # 必要に応じて返すデータを加工して返す
 │   │   │
-│   │   ├── adapter_db/              # DB接続層
+│   │   ├── adapter_db/
 │   │   │   ├── sqlite/
-│   │   │   │   └── SQLiteUserRepository.java
-│   │   │   └── postgres/            # 将来の拡張用
-│   │   │       └── PostgresUserRepository.java
+│   │   │   │   └── SQLiteUserRepository.ts
+│   │   │   │      # SQLite用のUserRepository実装
+│   │   │   │      # SQL操作をここに書く
+│   │   │   └── postgres/
+│   │   │       └── PostgresUserRepository.ts
+│   │   │          # Postgres用の実装（将来切替用）
 │   │   │
-│   │   ├── event/                   # イベント駆動用
-│   │   │   ├── UserCreatedEvent.java
-│   │   │   └── EventPublisher.java
+│   │   ├── event/
+│   │   │   ├── UserCreatedEvent.ts
+│   │   │   │  # ユーザー作成イベントのデータ型
+│   │   │   └── EventPublisher.ts
+│   │   │      # イベントを発行する処理
+│   │   │      # メール通知やログ出力などに利用
 │   │   │
-│   │   ├── feature/                 # 機能のオンオフ切り替え
-│   │   │   └── FeatureToggle.java
+│   │   ├── feature/
+│   │   │   └── FeatureToggle.ts
+│   │   │      # 新機能のON/OFF切替
+│   │   │      # 将来機能追加時に既存コードを壊さず対応
 │   │   │
-│   │   └── App.java                 # エントリポイント
+│   │   └── app.ts
+│   │      # サーバー起動ポイント
+│   │      # Expressルート設定、DB接続、CORS設定など
 │   │
-│   └── resources/
-│       ├── application.yml          # 設定ファイル
-│       └── db/migration/            # FlywayなどのDBマイグレーション
+│   └── config/
+│       ├── database.ts
+│       │  # DB接続設定
+│       │  # SQLite/Postgresの接続先、認証情報を定義
+│       └── appConfig.ts
+│          # アプリ全体の設定（ポート番号、環境変数）
 │
-├── frontend/                        # TypeScriptフロントエンド
-│   ├── web/                         # Webアプリ（React / TS）
+├── frontend/
+│   ├── web/
 │   │   ├── src/
-│   │   │   ├── assets/              # 画像・アイコン・フォント・CSS
-│   │   │   │   ├── images/          # ロゴやアバター画像
-│   │   │   │   ├── icons/           # SVGアイコン
-│   │   │   │   ├── fonts/           # フォントファイル
-│   │   │   │   └── css/             # グローバルCSS
-│   │   │   ├── components/          # 再利用コンポーネント
-│   │   │   ├── pages/               # ページ単位のコンポーネント
-│   │   │   ├── services/            # API通信クラス
-│   │   │   └── types/               # TypeScript型定義（DTOなど）
+│   │   │   ├── assets/
+│   │   │   │   ├── images/
+│   │   │   │   │   ├── logo.svg
+│   │   │   │   │   └── avatar-default.png
+│   │   │   │   │      # UIで使う画像
+│   │   │   │   ├── icons/
+│   │   │   │   │   ├── user.svg
+│   │   │   │   │   └── add.svg
+│   │   │   │   │      # UIアイコン
+│   │   │   │   ├── fonts/
+│   │   │   │   │   └── custom-font.woff2
+│   │   │   │   │      # Webフォント
+│   │   │   │   └── css/
+│   │   │   │       └── global.css
+│   │   │   │          # 共通スタイル
+│   │   │   ├── components/
+│   │   │   │   ├── Button.tsx
+│   │   │   │   │  # 再利用UI部品
+│   │   │   │   │  # 他のページでも使える
+│   │   │   │   └── UserCard.tsx
+│   │   │   │      # ユーザー情報表示カード
+│   │   │   ├── pages/
+│   │   │   │   ├── HomePage.tsx
+│   │   │   │   │  # トップページ
+│   │   │   │   └── UserPage.tsx
+│   │   │   │      # ユーザー一覧・管理ページ
+│   │   │   ├── services/
+│   │   │   │   └── userService.ts
+│   │   │   │      # API通信処理
+│   │   │   │      # GET/POST/DELETEなど
+│   │   │   └── types/
+│   │   │       └── User.ts
+│   │   │          # TypeScript型定義
+│   │   │          # APIレスポンスや内部データの型
 │   │   └── package.json
-│   │
-│   ├── desktop/                      # Electron / JavaFX用（オプション）
-│   └── mobile/                       # React Native / Flutter用（オプション）
 │
 ├── tests/
 │   ├── backend/
 │   │   └── user/
-│   │       ├── CreateUserTest.java
-│   │       └── SQLiteUserRepositoryTest.java
+│   │       ├── CreateUserTest.ts
+│   │       │  # CreateUserUseCaseの挙動確認
+│   │       └── SQLiteUserRepositoryTest.ts
+│   │          # SQLiteUserRepositoryの挙動確認
 │   └── frontend/
 │       └── web/
+│          # フロントエンドのページ・コンポーネント・サービスのテスト
 │
 └── docs/
-    ├── API.md                        # API仕様書
-    └── ARCHITECTURE.md               # 構造や設計方針の説明
+    ├── API.md
+    │  # API仕様書
+    │  # エンドポイント、リクエスト/レスポンス型を記載
+    └── ARCHITECTURE.md
+       # フォルダ構成、Clean Architectureの説明
+       # 誰でも理解できるように図解

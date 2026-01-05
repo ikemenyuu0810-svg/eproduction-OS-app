@@ -1,43 +1,43 @@
 project-root/
 ├── backend/
-│   ├── src/main/java/app/
+│   ├── src/
 │   │   ├── domain/
 │   │   │   └── user/
-│   │   │       ├── User.java
-│   │   │       ├── UserId.java
-│   │   │       ├── UserService.java
-│   │   │       └── UserRepository.java
+│   │   │       ├── User.ts
+│   │   │       └── UserId.ts
+│   │   │       ├── UserService.ts
+│   │   │       └── UserRepository.ts
 │   │   │
 │   │   ├── application/
 │   │   │   └── user/
-│   │   │       ├── CreateUserUseCase.java
-│   │   │       ├── GetUserUseCase.java
-│   │   │       └── DeleteUserUseCase.java
+│   │   │       ├── CreateUserUseCase.ts
+│   │   │       ├── GetUserUseCase.ts
+│   │   │       └── DeleteUserUseCase.ts
 │   │   │
 │   │   ├── adapter_api/
 │   │   │   └── user/
-│   │   │       ├── UserController.java
-│   │   │       ├── UserRequest.java
-│   │   │       └── UserResponse.java
+│   │   │       ├── UserController.ts
+│   │   │       ├── UserRequest.ts
+│   │   │       └── UserResponse.ts
 │   │   │
 │   │   ├── adapter_db/
 │   │   │   ├── sqlite/
-│   │   │   │   └── SQLiteUserRepository.java
+│   │   │   │   └── SQLiteUserRepository.ts
 │   │   │   └── postgres/
-│   │   │       └── PostgresUserRepository.java
+│   │   │       └── PostgresUserRepository.ts
 │   │   │
 │   │   ├── event/
-│   │   │   ├── UserCreatedEvent.java
-│   │   │   └── EventPublisher.java
+│   │   │   ├── UserCreatedEvent.ts
+│   │   │   └── EventPublisher.ts
 │   │   │
 │   │   ├── feature/
-│   │   │   └── FeatureToggle.java
+│   │   │   └── FeatureToggle.ts
 │   │   │
-│   │   └── App.java
+│   │   └── app.ts
 │   │
-│   └── resources/
-│       ├── application.yml
-│       └── db/migration/
+│   └── config/
+│       ├── database.ts
+│       └── appConfig.ts
 │
 ├── frontend/
 │   ├── web/
@@ -54,19 +54,22 @@ project-root/
 │   │   │   │   └── css/
 │   │   │   │       └── global.css
 │   │   │   ├── components/
+│   │   │   │   ├── Button.tsx
+│   │   │   │   └── UserCard.tsx
 │   │   │   ├── pages/
+│   │   │   │   ├── HomePage.tsx
+│   │   │   │   └── UserPage.tsx
 │   │   │   ├── services/
+│   │   │   │   └── userService.ts
 │   │   │   └── types/
+│   │   │       └── User.ts
 │   │   └── package.json
-│   │
-│   ├── desktop/
-│   └── mobile/
 │
 ├── tests/
 │   ├── backend/
 │   │   └── user/
-│   │       ├── CreateUserTest.java
-│   │       └── SQLiteUserRepositoryTest.java
+│   │       ├── CreateUserTest.ts
+│   │       └── SQLiteUserRepositoryTest.ts
 │   └── frontend/
 │       └── web/
 │

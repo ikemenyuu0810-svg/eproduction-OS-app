@@ -1,0 +1,73 @@
+project-root/
+├── backend/
+│   ├── package.json
+│   ├── tsconfig.json
+│   ├── src/
+│   │   ├── app.ts                   # サーバー起動・ミドルウェア設定
+│   │   ├── config/                  # DB接続や環境変数
+│   │   │   └── database.ts
+│   │   ├── domain/                  # ビジネスルール・エンティティ
+│   │   │   └── user/
+│   │   │       ├── User.ts
+│   │   │       ├── UserService.ts   # ビジネスロジック
+│   │   │       └── UserRepository.ts
+│   │   ├── application/             # ユースケース層
+│   │   │   └── user/
+│   │   │       ├── CreateUserUseCase.ts
+│   │   │       └── GetUserUseCase.ts
+│   │   ├── infrastructure/          # DBや外部API接続
+│   │   │   ├── sqlite/
+│   │   │   │   └── SQLiteUserRepo.ts
+│   │   │   └── postgres/
+│   │   │       └── PostgresUserRepo.ts
+│   │   ├── interfaces/              # APIルーティング
+│   │   │   └── userRoutes.ts
+│   │   ├── events/                  # イベント駆動・通知
+│   │   │   └── UserCreatedEvent.ts
+│   │   └── utils/
+│   │       └── validators.ts
+│   └── tests/
+│       ├── unit/
+│       └── integration/
+│
+├── frontend/
+│   ├── package.json
+│   ├── tsconfig.json
+│   ├── next.config.js
+│   ├── tailwind.config.js
+│   ├── postcss.config.js
+│   ├── public/
+│   │   ├── images/
+│   │   ├── icons/
+│   │   └── fonts/
+│   ├── src/
+│   │   ├── pages/
+│   │   │   ├── index.tsx
+│   │   │   ├── signup.tsx
+│   │   │   └── _app.tsx             # Chakra/Tailwind Provider 設定
+│   │   ├── components/              # 再利用可能コンポーネント
+│   │   │   ├── ui/                  # ボタン・フォーム・カード
+│   │   │   └── layout/              # ヘッダー・フッター・モーダル
+│   │   ├── features/                # Feature単位の状態管理
+│   │   │   └── user/
+│   │   │       ├── hooks.ts         # React Query / Reduxフック
+│   │   │       ├── slice.ts         # Redux Toolkit Slice
+│   │   │       └── types.ts
+│   │   ├── hooks/                    # 共通カスタムフック
+│   │   ├── styles/
+│   │   │   ├── globals.css
+│   │   │   └── tailwind.css
+│   │   └── utils/
+│   │       └── validators.ts
+│   └── tests/
+│       ├── unit/
+│       └── integration/
+│
+├── .eslintrc.js
+├── .prettierrc
+├── jest.config.js
+├── tsconfig.json
+├── README.md
+└── docs/
+    ├── ARCHITECTURE.md
+    └── API.md
